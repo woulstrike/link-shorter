@@ -1,5 +1,7 @@
 package com.example.userService.infrastructure.models;
 
+import com.example.userService.domain.enums.UserRole;
+import com.example.userService.domain.enums.UserStatus;
 import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -28,17 +30,17 @@ public class UserEntity {
 
     @Column(nullable = false)
     @Enumerated(value = EnumType.STRING)
-    private String userRole;
+    private UserRole userRole;
 
     @Column(nullable = false)
     @Enumerated(value = EnumType.STRING)
-    private String userStatus;
+    private UserStatus userStatus;
 
     @Column(nullable = false)
     private List<String> createdLinks;
 
     @Column(nullable = false)
-    private Long countOfCreatedLinks;
+    private Integer countOfCreatedLinks;
 
     @Column(nullable = false)
     private LocalDateTime createdUserDate;

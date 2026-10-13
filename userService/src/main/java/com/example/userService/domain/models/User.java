@@ -5,6 +5,7 @@ import com.example.userService.domain.enums.UserStatus;
 import com.example.userService.domain.exceptions.DomainException;
 import com.example.userService.domain.valueObjects.PasswordHash;
 import com.example.userService.domain.valueObjects.UserId;
+import jakarta.persistence.Enumerated;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
@@ -51,9 +52,9 @@ public class User {
         return new User(userId, userName, passwordHashCode, UserRole.USER, UserStatus.ACTIVE, createdLinks, createdUserDate, LocalDateTime.now());
     }
 
-    public User restoreUser(UUID userId, String userName, PasswordHash passwordHashCode, UserRole userRole, UserStatus userStatus, List<String> createdLinks, LocalDateTime createdUserDate, LocalDateTime userUpdateDate) throws DomainException {
+    public static User restoreUser(UUID userId, String userName, String passwordHashCode, UserRole userRole, UserStatus userStatus, List<String> createdLinks, LocalDateTime createdUserDate, LocalDateTime userUpdateDate) throws DomainException {
         UserId restoredUserId = UserId.of(userId);
-        return new User(restoredUserId, userName, passwordHashCode, userRole, userStatus, createdLinks, createdUserDate,  userUpdateDate);
+        return new User(restoredUserId, userName, new PasswordHash(passwordHashCode), userRole, userStatus, createdLinks, createdUserDate,  userUpdateDate);
     }
 
     @Override
