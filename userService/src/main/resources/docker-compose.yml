@@ -1,0 +1,16 @@
+services:
+  postgres:
+    image: postgres:15
+    container_name: postgres
+    environment:
+      POSTGRES_DB: users_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 127001
+    volumes:
+      - postgres_user_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_user_data:
+
+
+
