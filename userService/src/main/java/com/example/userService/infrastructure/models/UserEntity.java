@@ -1,14 +1,13 @@
 package com.example.userService.infrastructure.models;
 
 import jakarta.annotation.Nullable;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -28,8 +27,22 @@ public class UserEntity {
     private String passwordHashCode;
 
     @Column(nullable = false)
+    @Enumerated(value = EnumType.STRING)
+    private String userRole;
+
+    @Column(nullable = false)
+    @Enumerated(value = EnumType.STRING)
+    private String userStatus;
+
+    @Column(nullable = false)
     private List<String> createdLinks;
 
     @Column(nullable = false)
     private Long countOfCreatedLinks;
+
+    @Column(nullable = false)
+    private LocalDateTime createdUserDate;
+
+    @Column(nullable = false)
+    private LocalDateTime userUpdateDate;
 }
